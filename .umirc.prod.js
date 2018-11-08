@@ -9,7 +9,9 @@ export default {
       dva: {
         immer: true
       },
-      dynamicImport: true,
+      dynamicImport: {
+        loadingComponent: 'components/Loading'
+      },
       dll: false,
       routes: {
         exclude: [

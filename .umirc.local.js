@@ -1,6 +1,6 @@
 const path = require('path')
 export default {
-  base: '/list',
+  base: '/#/list',
   history: 'hash',
   disableCSSModules: true,
   hash: true,
@@ -10,7 +10,9 @@ export default {
       dva: {
         immer: true
       },
-      dynamicImport: true,
+      dynamicImport: {
+        loadingComponent: 'components/Loading'
+      },
       dll: false,
       routes: {
         exclude: [
