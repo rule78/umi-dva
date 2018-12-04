@@ -1,6 +1,6 @@
 const path = require('path')
 export default {
-  publicPath: "",
+  publicPath: "http://ruler.applinzi.com/dist/",
   history: 'hash',
   hash: true,
   plugins: [
