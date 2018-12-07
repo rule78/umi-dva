@@ -1,6 +1,5 @@
 const Ftp = require('./ftp/ftpControll')
 const path = require('path');
-const fs = require('fs');
 const proName = 'dist'
 const staticFilesPath = {
     js: {
@@ -16,15 +15,18 @@ const staticFilesPath = {
         remote: `/${proName}/static`,
     },
 };
+function mkdirFile(filepath){
+    var ftp = new Ftp();
+    return  ftp.mkdirFile(filepath)
+}
+function uploadFile(files){
+    var ftp = new Ftp();
+    return  ftp.uploadFile(files)    
+}
+async function upload(){
+    await mkdirFile(`/${proName}/`);
+    await mkdirFile(`/${proName}/static`);
+    await uploadFile(staticFilesPath);
+}
 console.log('正在上传...');
-var ftp = new Ftp();
-ftp.mkdirFile(`/${proName}/static`)
-    .then((path) => {
-        console.log(`${path}生成成功`);
-    })
-    .catch()
-ftp.uploadFile(staticFilesPath)    
-    .then(() => {
-    console.log(`全部上传成功`);
-    })
-    .catch()
+upload();

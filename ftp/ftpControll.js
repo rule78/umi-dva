@@ -27,12 +27,12 @@ class Ftp {
                 sftp.on('ready', function () {
                     console.log(`${item.remotePath}---上传位置`);
                     sftp.put(item.localPath, `${item.remotePath}`, function (err) {
+                        sftp.end();
                         if (err) {
                             console.log(`${item.file}上传失败`);
-                            reject(err);
+                            return reject(err);
                         } else {
                             console.log(`${item.file}上传完成`);
-                            sftp.end();
                             resolve();
                         }
                     })
@@ -41,16 +41,17 @@ class Ftp {
         });
         return Promise.all(tasks);
     }
+    /*缺少判断是否存在*/
     mkdirFile(path) {
         return new Promise((resolve, reject) => {
             sftp.on('ready', function () {
                 sftp.mkdir(`${path}`, function (err) {
+                    sftp.end();
                     if (err) {
-                        sftp.end();
-                        reject(err);
+                        console.log(`${path}成功失败`);
+                        return reject(err);
                     } else {
                         console.log(`${path}成功生成`);
-                        sftp.end();
                         resolve(path);
                     }
                 })
