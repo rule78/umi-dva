@@ -1,6 +1,5 @@
 const path = require('path')
 export default {
-  base: '/list',
   history: 'hash',
   disableCSSModules: true,
   hash: true,

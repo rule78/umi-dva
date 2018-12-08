@@ -13,20 +13,13 @@ const staticFilesPath = {
     img: {
         local: path.resolve(__dirname, './dist/static'),
         remote: `/${proName}/static`,
-    },
+    }
 };
-function mkdirFile(filepath){
-    var ftp = new Ftp();
-    return  ftp.mkdirFile(filepath)
-}
-function uploadFile(files){
-    var ftp = new Ftp();
-    return  ftp.uploadFile(files)    
-}
 async function upload(){
-    await mkdirFile(`/${proName}/`);
-    await mkdirFile(`/${proName}/static`);
-    await uploadFile(staticFilesPath);
+    var ftp = new Ftp();
+    await ftp.mkdirFile(`/${proName}/`);
+    await ftp.mkdirFile(`/${proName}/static`);
+    await ftp.uploadFile(staticFilesPath);
 }
-console.log('正在上传...');
-upload();
+ console.log('正在上传...');
+ upload();

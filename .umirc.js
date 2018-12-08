@@ -1,8 +1,8 @@
 const path = require('path')
 export default {
-  routes: [
-    { path: '/', component: './list' }
-  ],
+  // routes: [
+  //   { path: '/', component: './list' }
+  // ],
   plugins: [
     ['umi-plugin-react', {
       antd: true,
