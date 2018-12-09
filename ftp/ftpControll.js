@@ -6,6 +6,9 @@ const ftpConfig = {
     user: 'ruler', // 你的登录用户名
     password: 'slkyn2lv8k3s', // 你的密码
     debug: console.log,
+    connTimeout: 20000,
+    pasvTimeout: 20000,
+    keepalive: 20000
 }
 class Ftp {
     /**
@@ -26,39 +29,39 @@ class Ftp {
     }
     uploadFile(staticFilesPath) {
         let files = [];
+        let sftp = new Client();
+        sftp.connect(ftpConfig)
         Object.keys(staticFilesPath).forEach(key => {
             files = files.concat(this.handleFilePath(staticFilesPath[key], key));
         });
         const tasks = files.map(item => {
-            var sftp = new Client();
             return new Promise((resolve, reject) => {
                 sftp.on('ready', function () {
-                    console.log(`${item.remotePath}---上传位置`);
                     sftp.put(item.localPath, `${item.remotePath}`, function (err) {
-                        sftp.end();
                         if (err) {
+                            console.log(`${item.remotePath}上传失败`)
                             reject();
                         } else {
-                            resolve(item.remotePath);
-
+                            console.log(`${item.remotePath}上传成功`)
+                            sftp.end();
+                            resolve();
                         }
                     })
                 })
-                sftp.connect(ftpConfig)
             });
         });
-        return Promise.all(tasks);
+        return Promise.all(tasks).then(()=>{console.log('上传成功')});
     }
     /*缺少判断是否存在*/
     mkdirFile(path) {
+        let sftp = new Client();
         return new Promise((resolve, reject) => {
-            var sftp = new Client();
             sftp.on('ready', function () {
                 sftp.mkdir(`${path}`, function (err) {
-                    sftp.end();
                     if (err) {
                         reject();
                     } else {
+                        sftp.end();
                         resolve(path);
                     }
                 })
