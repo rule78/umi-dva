@@ -17,8 +17,8 @@ const staticFilesPath = {
 };
 async function upload(){
     var ftp = new Ftp();
+    await ftp.rmdirFile(`/${proName}`);
     await ftp.mkdirFile(`/${proName}/`);
-    await ftp.mkdirFile(`/${proName}/static`);
     await ftp.uploadFile(staticFilesPath);
 }
  console.log('正在上传...');
