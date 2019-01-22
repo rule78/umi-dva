@@ -5,12 +5,7 @@ let containerDOM = null, containerElement = null;
 class Index extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            
-        };
-    }
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
+        this.state = { };
     }
     defaultContain = () =>{
         const { title, content, confirmText } = this.props

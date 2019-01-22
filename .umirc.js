@@ -13,6 +13,7 @@ export default {
       dll: false,
       routes: {
         exclude: [
+          /mock\.(j|t)sx?$/,
           /model\.(j|t)sx?$/,
           /service\.(j|t)sx?$/,
           /models\//,
