@@ -18,9 +18,12 @@
   opacity: 1;
 }
 .progress__text {
+  position: absolute;
+  top:0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 20em;
   padding: 0 0.9em;
-  position: absolute;
 }
 .progress__text em {
   font-style: normal;

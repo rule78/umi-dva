@@ -7,14 +7,14 @@ class Index extends Component {
         super(props);
         this.state = { };
     }
-    defaultContain = () =>{
+    defaultContain() {
         const { title, content, confirmText } = this.props
         return (
             <div className="defaultContain">
-                <div className="title">{title}</div>
+                <div className="title"> {title} </div>
                 <div className="content">{content}</div>
                 <div className="button" onClick={this.close}>
-                    {confirmText? confirmText: '确定'}
+                    {confirmText ? confirmText : '确定'}
                 </div>
             </div>
         )
@@ -32,7 +32,7 @@ class Index extends Component {
             display: show? 'flex': 'none'
         }
         return (
-            <div className={`modal`} style={modalStyle}>
+            <div className={`quModal`} style={modalStyle}>
                 <div className={`mask`}></div>
                 <div className={`content`}>
                     { children ? children : this.defaultContain()}

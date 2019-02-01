@@ -1,0 +1,30 @@
+@function pw($val) {
+    @return ($val/10.8) + vw;
+}
+  .progress-radial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto pw(50) auto;
+    position: relative;
+    width: pw(160);
+    height: pw(160);
+    border-radius: 50%;
+    background-color: #FF5C30;
+    box-shadow: 0 pw(2) pw(5) rgba(0, 0, 0, 0.1);
+    .text{
+        margin-top: pw(1);
+        padding-top: pw(2);
+        width: pw(136);
+        height: pw(136);
+        line-height: pw(134);
+        border-radius: 50%; 
+        background-color: #fff;
+        font-family: 'PingFangSC-Semibold';
+        font-size: pw(80);
+        color: #FF3408;
+        letter-spacing: pw(2.55);
+        text-align: center;
+        font-weight: 600;
+    }
+}

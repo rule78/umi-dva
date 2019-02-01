@@ -4,12 +4,14 @@ import withRouter from 'umi/withRouter';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import './index.css';
 class Layout extends Component {
+  componentWillMount(){
+    if(this.props.location.pathname === '/'){
+      this.props.history.push('/init')
+    }
+  }
   //给iscroll腾个位置
   render() {
     const {children, location} = this.props
-    if (location.pathname === '/login') {
-      return <div style={{height: '100vh'}}>{ children }</div>
-    }
     return (
       <TransitionGroup>
         <CSSTransition key={location.pathname} 
